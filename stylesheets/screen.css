@@ -1,0 +1,163 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, ../sass/screen.scss */
+html {
+  font-size: 100%;
+  overflow-y: scroll;
+  -webkit-tap-highlight-color: transparent;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: none;
+}
+
+/* line 12, ../sass/screen.scss */
+body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.61;
+  font-weight: 400;
+}
+
+/* line 13, ../sass/screen.scss */
+body, button, input, select, textarea {
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+}
+
+/* line 15, ../sass/screen.scss */
+a {
+  color: #12C;
+}
+
+/* line 16, ../sass/screen.scss */
+a:visited {
+  color: #61C;
+}
+
+/* line 17, ../sass/screen.scss */
+a:focus {
+  outline: thin dotted;
+}
+
+/* line 18, ../sass/screen.scss */
+a:hover, a:active {
+  color: #c00;
+  outline: 0;
+}
+
+/* line 20, ../sass/screen.scss */
+b, strong {
+  font-weight: bold;
+}
+
+/* line 21, ../sass/screen.scss */
+pre, code {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* line 22, ../sass/screen.scss */
+ul, ol {
+  margin: 1em 0;
+  padding: 0 0 0 20px;
+}
+
+/* line 23, ../sass/screen.scss */
+img {
+  border: 0;
+  max-width: 100%;
+}
+
+/* line 25, ../sass/screen.scss */
+body {
+  background: #fff;
+}
+
+/* line 26, ../sass/screen.scss */
+header, footer, .container {
+  max-width: 45em;
+  margin: 0 auto;
+}
+
+/* line 28, ../sass/screen.scss */
+header {
+  padding: 0 0.5em;
+  color: #C90B0B;
+}
+
+/* line 29, ../sass/screen.scss */
+header img {
+  border-radius: 40px;
+  float: left;
+}
+
+/* line 30, ../sass/screen.scss */
+header p {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-left: 4em;
+}
+
+/* line 31, ../sass/screen.scss */
+header p span {
+  font-size: 0.8em;
+  font-weight: normal;
+}
+
+/* line 33, ../sass/screen.scss */
+.hero {
+  padding: 2em;
+  background-color: #f8f8f8;
+  font-size: 1.2em;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+/* line 38, ../sass/screen.scss */
+.content {
+  padding: 1em 1em;
+}
+
+/* line 39, ../sass/screen.scss */
+.content li {
+  list-style-type: none;
+  font-size: 1.1em;
+}
+
+/* line 40, ../sass/screen.scss */
+li img {
+  float: left;
+  padding-right: 1em;
+}
+
+/* line 41, ../sass/screen.scss */
+li p {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/* line 43, ../sass/screen.scss */
+footer {
+  padding: 0 0.5em;
+  border-top: 1px solid #ccc;
+}
+
+/* line 47, ../sass/screen.scss */
+footer span {
+  float: right;
+  font-style: italic;
+}
+
+/* Smartphones (portrait) */
+@media only screen and (max-width: 480px) {
+  /* line 51, ../sass/screen.scss */
+  body {
+    font-size: 12px;
+  }
+
+  /* line 52, ../sass/screen.scss */
+  header p {
+    padding-left: 4.5em;
+  }
+}
