@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+// @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 html {
   font-size: 100%;
   overflow-y: scroll;
@@ -6,7 +6,7 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: none;
 }
-body, button, input, select, textarea { font-family: 'Roboto', sans-serif; color: #333; }
+body, button, input, select, textarea { font-family: sans-serif; color: #333; }
 
 a {
   color: #12C;

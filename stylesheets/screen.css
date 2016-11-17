@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 /* line 2, ../sass/screen.scss */
 html {
   font-size: 100%;
@@ -10,7 +9,7 @@ html {
 
 /* line 9, ../sass/screen.scss */
 body, button, input, select, textarea {
-  font-family: 'Roboto', sans-serif;
+  font-family: sans-serif;
   color: #333;
 }
 
