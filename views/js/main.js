@@ -510,7 +510,6 @@ function createSlidingPizzas(){
   // changed from 'querySelector' to 'getElementById' and moved outside the loop
   var movingPizzas = document.getElementById('movingPizzas1');
   movingPizzas.innerHTML = '';      // empty the content to repopulate in case of resize of the page
-  console.log(n);
   for (var i = 0, elem; i < n; i++) {
     // declaration of the 'elem' var outside the loop, to prevent multiple, and useless, creation of the same variable
     elem = document.createElement('img');
