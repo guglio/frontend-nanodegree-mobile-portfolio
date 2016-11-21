@@ -317,6 +317,7 @@ var ingredient_length = {
 
 // returns a DOM element for each pizza
 var pizzaElementGenerator = function(i) {
+  'use strict';
   var pizzaContainer,             // contains pizza title, image and list of ingredients
       pizzaImageContainer,        // contains the pizza image
       pizzaImage,                 // the pizza image itself
@@ -374,16 +375,17 @@ var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
   // Changes the value for the size of the pizza above the slider
+  // switched from 'querySelector' to 'getElementById'
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -395,7 +397,8 @@ var resizePizzas = function(size) {
    // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
+    // changed from 'querySelector' to 'getElementById'
+    var windowWidth = document.getElementById("randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
     // Changes the slider value to a percent width
@@ -425,13 +428,12 @@ var resizePizzas = function(size) {
     var pizza = document.getElementById("pizza1");
     var dx = determineDx(pizza, size);
     var newwidth = (pizza.offsetWidth + dx) + 'px';
-    document.querySelectorAll(".randomPizzaContainer").forEach(
-      (
-        function(x){
-          x.style.width = newwidth;
-        }
-      )
-    );
+    // changed from 'querySelectorAll' to 'getElementsByClassName', so I had also to change the loop
+    var pizzaRandom = document.getElementsByClassName("randomPizzaContainer");
+
+    Array.prototype.forEach.call(pizzaRandom, function(x){
+      x.style.width = newwidth;
+    });
   }
 
   changePizzaSizes(size);
@@ -499,19 +501,59 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
-// Generates the sliding pizzas when the page loads.
-document.addEventListener('DOMContentLoaded', function() {
+// create the function to call when the page is loaded and when the page is resized
+function createSlidingPizzas(){
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
+  var h = window.screen.height;
+  var n = Math.floor(h/s)*cols;
+  // changed from 'querySelector' to 'getElementById' and moved outside the loop
+  var movingPizzas = document.getElementById('movingPizzas1');
+  movingPizzas.innerHTML = '';      // empty the content to repopulate in case of resize of the page
+  console.log(n);
+  for (var i = 0, elem; i < n; i++) {
+    // declaration of the 'elem' var outside the loop, to prevent multiple, and useless, creation of the same variable
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/sliding_pizza.png";        // create smaller pizza with height of 100px
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
+};
+
+// I used the example on the docs for resize event, to call the creation of the sliding pizzas
+(function() {
+    var throttle = function(type, name, obj) {
+        obj = obj || window;
+        var running = false;
+        var func = function() {
+            if (running) { return; }
+            running = true;
+             requestAnimationFrame(function() {
+                obj.dispatchEvent(new CustomEvent(name));
+                running = false;
+            });
+        };
+        obj.addEventListener(type, func);
+    };
+
+    /* init - you can init any event */
+    throttle("resize", "optimizedResize");
+})();
+
+// resize event handler, better than this:
+//  window.addEventListener('resize', function() {createSlidingPizzas();});
+window.addEventListener("optimizedResize", function() {
+    createSlidingPizzas();
+});
+
+
+
+// Generates the sliding pizzas when the page loads.
+document.addEventListener('DOMContentLoaded', function() {
+  createSlidingPizzas();
   updatePositions();
 });
